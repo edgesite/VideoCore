@@ -512,6 +512,11 @@ namespace videocore { namespace simpleApi {
     [_previewView release];
     _previewView = nil;
 
+    // TODO(riku): we should add a release method to ISource
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setActive:NO error:nil];
+    [session release];
+
     dispatch_release(_graphManagementQueue);
 
     [super dealloc];
